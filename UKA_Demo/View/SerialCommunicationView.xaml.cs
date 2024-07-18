@@ -23,5 +23,10 @@ namespace UKA_Demo.View
         {
             InitializeComponent();
         }
+
+        private void Button_MouseEnter ( object sender, MouseEventArgs e )
+        {
+
+        }
     }
 }

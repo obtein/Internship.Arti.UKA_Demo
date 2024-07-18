@@ -135,6 +135,7 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -178,11 +179,14 @@
                 <TextBox x:Name="dev07" Grid.Row="7" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
                 <TextBox x:Name="w07" Grid.Row="7" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
                 <TextBox x:Name="e07" Grid.Row="7" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--seperator between devices-->
+                <Button Grid.Column="3" Grid.RowSpan="8" Background="#1C2833" Foreground="#1C2833"/>
             </Grid>
             <!--Middle-->
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -228,11 +232,14 @@
                 <TextBox x:Name="dev17" Grid.Row="7" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
                 <TextBox x:Name="w17" Grid.Row="7" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
                 <TextBox x:Name="e17" Grid.Row="7" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--seperator between devices-->
+                <Button Grid.Column="3" Grid.RowSpan="8" Background="#1C2833" Foreground="#1C2833"/>
             </Grid>
             <!--Right-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -278,18 +285,17 @@
                 <TextBox x:Name="dev27" Grid.Row="7" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
                 <TextBox x:Name="w27" Grid.Row="7" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
                 <TextBox x:Name="e27" Grid.Row="7" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--seperator between devices-->
+                <Button Grid.Column="3" Grid.RowSpan="8" Background="#1C2833" Foreground="#1C2833" AllowDrop="False" Focusable="False"/>
             </Grid>
         </Grid>
         <!--DEBUGLOG-->
-        <RichTextBox IsManipulationEnabled="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="190" Width="600" Background="#1B2631"/>
+        <RichTextBox IsManipulationEnabled="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="180" Width="600" Background="#1B2631" Margin="15,0,0,10"/>
         <!--UTILITIES PANEL-->
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="190" Width="300">
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="190" Width="270" Margin="0,0,15,0">
             <Button Content="Connect"/>
             <Button Content="Send Data"/>
         </StackPanel>
-        <!--SHADOW EFFECT-->
-        <Grid.Effect>
-            <DropShadowEffect BlurRadius="50" ShadowDepth="20" Color="#1B2631"/>
-        </Grid.Effect>
+        
     </Grid>
 </Window>

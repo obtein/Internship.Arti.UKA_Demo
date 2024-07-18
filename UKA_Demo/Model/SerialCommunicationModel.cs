@@ -9,6 +9,7 @@ namespace UKA_Demo.Model
 {
     public class SerialCommunicationModel
     {
+        // SerialCommunication DataReceived event which will be subscribed by SerialCommunicationViewModel
         public event Action<string> DataReceived;
 
         #region privateVariables
@@ -16,10 +17,10 @@ namespace UKA_Demo.Model
         /// Declaring variables needed to create a serial connection
         /// </summary>
 
-        private string deviceID;
+        private string deviceID; // Unique ID for communication handshake
         private readonly SerialPort serialPort;
-        private StringBuilder dataReceiverBuffer;
-        private bool isCommunicationActive;
+        private StringBuilder dataReceiverBuffer; // For collecting data from serial port
+        private bool isCommunicationActive; // For the logic implemented in ProcessReceivedDataAsync
         private string portName;
         private readonly int[] baudRates = { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000 };
         private int baudRate;
@@ -33,7 +34,7 @@ namespace UKA_Demo.Model
         private int writeTimeOut;
         #endregion
 
-        #region GettersSetters
+        #region Properties
         public string PortName
         {
             get => portName;
@@ -99,6 +100,7 @@ namespace UKA_Demo.Model
         #endregion
 
         #region Constructor
+
         public SerialCommunicationModel ( 
             string deviceID,string portName, int baudRateIndex, 
             int parityListIndex, int stopBitsIndex, 
@@ -121,10 +123,17 @@ namespace UKA_Demo.Model
         #endregion
 
         #region Methods
+
+        // Opens the serial port
         public void Open () => serialPort.Open();
 
+        // Closes the serial port
         public void Close () => serialPort.Close();
 
+        /// <summary>
+        /// Sends data to listener
+        /// </summary>
+        /// <param name="data"></param> => data to be send
         public void SendData ( string data )
         {
             if ( serialPort.IsOpen )
@@ -133,12 +142,28 @@ namespace UKA_Demo.Model
             }
         }
 
+        /// <summary>
+        /// serialPort.DataReceived event has subscribed this in constructor
+        /// it waits until serialPort.ReadExisting().ToString() then
+        /// waits for ProcessReceivedDataAsync( hexData )
+        /// </summary>
+        /// <returns></returns>
         private async Task OnDataReceivedAsync ()
         {
             string hexData = await Task.Run( () => serialPort.ReadExisting().ToString() );
             await ProcessReceivedDataAsync( hexData );
         }
 
+        /// <summary>
+        /// This method is called by OnDataReceivedAsync with hexData and 
+        /// filters it by checking message starting from 
+        /// "0x02"(beggining of the mesagge) - "0x03"(ending of the message)
+        /// it will then assigns the resulted data to completeHexMessage 
+        /// finnaly DataReceived?.Invoke( completeHexMessage ) will notify
+        /// ServiceCommunicationViewModel
+        /// </summary>
+        /// <param name="hexData"></param> => data read from serial port in OnDataReceivedAsync
+        /// <returns></returns>
         private async Task ProcessReceivedDataAsync ( string hexData )
         {
             await Task.Run( () =>
@@ -161,10 +186,15 @@ namespace UKA_Demo.Model
                     //string convertedData = ConvertHexToString( completeHexMessage );
                     DataReceived?.Invoke( completeHexMessage );
                 }
-
             } );
         }
 
+        /// <summary>
+        ///  TO-DO : When physical tests begin check the form of received data
+        ///  Dont Forget to uncomment "//string convertedData = ConvertHexToString( completeHexMessage );" in ProcessReceivedDataAsync
+        /// </summary>
+        /// <param name="hexData"></param>
+        /// <returns></returns>
         private string ConvertHexToString ( string hexData )
         {
             try
