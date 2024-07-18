@@ -1,0 +1,295 @@
+﻿<Window x:Class="UKA_Demo.View.SerialCommunicationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UKA_Demo.View"
+        mc:Ignorable="d"
+        Title="SerialCommunicationView" Height="600" Width="900"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+    <Grid >
+        <!--main backgrond-->
+        <Rectangle Fill="#1C2833" RadiusX="15" RadiusY="15" Margin="7"/>
+        <!--logo-->
+        <Image VerticalAlignment="Top" HorizontalAlignment="Center" Height="70" Width="70" Margin="0,10,0,0">
+            <Image.Source>
+                <BitmapImage UriSource="C:\Users\Lenovo\source\repos\UKA_Demo\UKA_Demo\src\images\logo.jpg" />
+            </Image.Source>
+        </Image>
+        <!--SerialComInputs-->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="auto" Width="275" Margin="25,30,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- 0,0 -->
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Port" Grid.Column="0"/>
+                <ComboBox x:Name="portSelectionCB" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <!-- 0,1 -->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="BR" Grid.Column="0"/>
+                <ComboBox x:Name="baudRateSelectionCB" Grid.Column="1" Margin="5"/>
+
+            </Grid>
+            <!-- 1,0 -->
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Parity" Grid.Column="0"/>
+                <ComboBox x:Name="paritySelectionCB" Grid.Column="1" Margin="5"/>
+            
+            </Grid>
+            <!-- 1,1 -->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="SB" Grid.Column="0"/>
+                <ComboBox x:Name="stopBitsSelectionCB" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <!-- 2,0 -->
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="HS" Grid.Column="0"/>
+                <ComboBox x:Name="handShakeSelectionCB" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <!-- 3,0 -->
+            <Grid Grid.Row="3" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="ReadTO" Grid.Column="0"/>
+                <TextBox x:Name="readTimeOutTB" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <!-- 3,1 -->
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="WriteTO" Grid.Column="0"/>
+                <TextBox x:Name="writeTimeOutTB" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Bottom"/>
+            </Grid>
+
+        </Grid>
+        <!--First Selection-->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="300" Background="#1B2631" Margin="0,80,0,0">
+            <Button Content="Serial" Width="150" Height="50" FontSize="25" FontStyle="Normal" Foreground="#F6DDCC" Background="#1C2833"/>
+            <Button Content="Ethernet" Width="150" Height="50" FontSize="25" FontStyle="Normal" Foreground="#F6DDCC" Background="#1C2833"/>
+        </StackPanel>
+        <!--DeviceUI-->
+        <Grid Background="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Center" Height="200" Width="870">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--LEFT-->
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--device 0 and index 0 (dev00) e: error w: working-->
+                <TextBox x:Name="dev00" Grid.Row="0" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w00" Grid.Row="0" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e00" Grid.Row="0" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 1 (dev01) e: error w: working-->
+                <TextBox x:Name="dev01" Grid.Row="1" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w01" Grid.Row="1" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e01" Grid.Row="1" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 2 (dev02) e: error w: working-->
+                <TextBox x:Name="dev02" Grid.Row="2" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w02" Grid.Row="2" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e02" Grid.Row="2" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 3 (dev03) e: error w: working-->
+                <TextBox x:Name="dev03" Grid.Row="3" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w03" Grid.Row="3" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e03" Grid.Row="3" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 4 (dev04) e: error w: working-->
+                <TextBox x:Name="dev04" Grid.Row="4" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w04" Grid.Row="4" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e04" Grid.Row="4" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 5 (dev05) e: error w: working-->
+                <TextBox x:Name="dev05" Grid.Row="5" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w05" Grid.Row="5" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e05" Grid.Row="5" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 6 (dev06) e: error w: working-->
+                <TextBox x:Name="dev06" Grid.Row="6" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w06" Grid.Row="6" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e06" Grid.Row="6" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 0 and index 7 (dev07) e: error w: working-->
+                <TextBox x:Name="dev07" Grid.Row="7" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w07" Grid.Row="7" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e07" Grid.Row="7" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+            </Grid>
+            <!--Middle-->
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--device 1 and index 0 (dev10) e: error w: working-->
+                <TextBox x:Name="dev10" Grid.Row="0" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w10" Grid.Row="0" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e10" Grid.Row="0" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 1 (dev11) e: error w: working-->
+                <TextBox x:Name="dev11" Grid.Row="1" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w11" Grid.Row="1" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e11" Grid.Row="1" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 2 (dev12) e: error w: working-->
+                <TextBox x:Name="dev12" Grid.Row="2" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w12" Grid.Row="2" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e12" Grid.Row="2" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 3 (dev13) e: error w: working-->
+                <TextBox x:Name="dev13" Grid.Row="3" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w13" Grid.Row="3" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e13" Grid.Row="3" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 4 (dev14) e: error w: working-->
+                <TextBox x:Name="dev14" Grid.Row="4" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w14" Grid.Row="4" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e14" Grid.Row="4" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 5 (dev15) e: error w: working-->
+                <TextBox x:Name="dev15" Grid.Row="5" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w15" Grid.Row="5" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e15" Grid.Row="5" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 6 (dev16) e: error w: working-->
+                <TextBox x:Name="dev16" Grid.Row="6" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w16" Grid.Row="6" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e16" Grid.Row="6" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 1 and index 7 (dev17) e: error w: working-->
+                <TextBox x:Name="dev17" Grid.Row="7" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w17" Grid.Row="7" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e17" Grid.Row="7" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+            </Grid>
+            <!--Right-->
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--device 2 and index 0 (dev20) e: error w: working-->
+                <TextBox x:Name="dev20" Grid.Row="0" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w20" Grid.Row="0" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e20" Grid.Row="0" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 1 (dev21) e: error w: working-->
+                <TextBox x:Name="dev21" Grid.Row="1" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w21" Grid.Row="1" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e21" Grid.Row="1" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 2 (dev22) e: error w: working-->
+                <TextBox x:Name="dev22" Grid.Row="2" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w22" Grid.Row="2" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e22" Grid.Row="2" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 3 (dev23) e: error w: working-->
+                <TextBox x:Name="dev23" Grid.Row="3" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w23" Grid.Row="3" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e23" Grid.Row="3" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 4 (dev24) e: error w: working-->
+                <TextBox x:Name="dev24" Grid.Row="4" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w24" Grid.Row="4" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e24" Grid.Row="4" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 5 (dev25) e: error w: working-->
+                <TextBox x:Name="dev25" Grid.Row="5" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w25" Grid.Row="5" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e25" Grid.Row="5" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 6 (dev26) e: error w: working-->
+                <TextBox x:Name="dev26" Grid.Row="6" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w26" Grid.Row="6" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e26" Grid.Row="6" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <!--device 2 and index 7 (dev27) e: error w: working-->
+                <TextBox x:Name="dev27" Grid.Row="7" Grid.Column="0" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="w27" Grid.Row="7" Grid.Column="1" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+                <TextBox x:Name="e27" Grid.Row="7" Grid.Column="2" Background="DarkSlateGray" IsManipulationEnabled="False"/>
+            </Grid>
+        </Grid>
+        <!--DEBUGLOG-->
+        <RichTextBox IsManipulationEnabled="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="190" Width="600" Background="#1B2631"/>
+        <!--UTILITIES PANEL-->
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="190" Width="300">
+            <Button Content="Connect"/>
+            <Button Content="Send Data"/>
+        </StackPanel>
+        <!--SHADOW EFFECT-->
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="50" ShadowDepth="20" Color="#1B2631"/>
+        </Grid.Effect>
+    </Grid>
+</Window>
